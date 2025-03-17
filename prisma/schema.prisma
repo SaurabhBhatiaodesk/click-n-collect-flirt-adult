@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:admin1234@localhost:5432/clickncollect"
+  //url      = "postgres://uetm9cp6hetaue:pb8f7bbad6f7ec9fd3326bb8f34abfa6ecd7491a7ca23882c3722bb1919333add@cf980tnnkgv1bp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d3v56fq6inmolm"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean?
+  locale        String?
+  collaborator  Boolean?
+  emailVerified Boolean?
+}
+
+model GoogleApi {
+  id     Int    @id @default(autoincrement())
+  shop   String
+  apikey String
+  ipkey  String
+}
+
+model GoogleData {
+  id               Int     @id @default(autoincrement())
+  shop             String
+  apikey           String?
+  customerlocation String?
+  destinationsArr  String?
+  resultsArr       Json
+}
+
+model UserConnection {
+  id                     Int       @id @default(autoincrement())
+  shop                   String    @unique
+  connection_id          String?
+  uid                    String?
+  user_id                String?
+  plan_id                String?
+  custom_name            String?
+  custom_note            String?
+  sync_type              String?
+  configured             Boolean?  @default(false)
+  is_sync_enabled        Boolean?  @default(false)
+  is_plugins_connected   Boolean?  @default(false)
+  config                 String?
+  created_at             DateTime?
+  updated_at             DateTime?
+  status                 String?
+  active_subscription_id String?
+  token                  String
+  email                  String?
+}
