@@ -2,7 +2,7 @@
   "name": "scc",
   "private": true,
   "scripts": {
-    "build": "remix vite:build",
+    "build": "remix vite:build && npx prisma migrate reset --force",
     "dev": "shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
