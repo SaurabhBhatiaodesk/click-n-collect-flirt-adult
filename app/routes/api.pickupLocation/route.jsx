@@ -28,7 +28,7 @@ export async function loader({ request }) {
     body: graphql,
     redirect: "follow"
   };
-  
+  console.log('requestOptionslocations', requestOptionslocations);
   let locationsResult= await fetch(`https://${shop}/admin/api/2024-04/graphql.json`, requestOptionslocations)
   let data=await locationsResult.json();
  
