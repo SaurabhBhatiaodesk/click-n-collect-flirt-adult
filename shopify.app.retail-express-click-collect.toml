@@ -3,7 +3,7 @@
 client_id = "31ef8dcd9586021f76d3de78510465c8"
 name = "Retail Express-Click & Collect"
 handle = "retail-express-click-collect"
-application_url = "https://clickncollect-12d7088d53ee.herokuapp.com/"
+application_url = "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com"
 embedded = false
 
 [build]
@@ -16,10 +16,10 @@ scopes = "read_inventory,read_locales,read_locations,read_product_listings,read_
 
 [auth]
 redirect_urls = [
-  "https://clickncollect-12d7088d53ee.herokuapp.com/auth/callback",
-  "https://clickncollect-12d7088d53ee.herokuapp.com/auth/shopify/callback",
-  "https://clickncollect-12d7088d53ee.herokuapp.com/api/auth/callback",
-  "https://clickncollect-12d7088d53ee.herokuapp.com/api/auth"
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/shopify/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth"
 ]
 
 [webhooks]
@@ -33,4 +33,4 @@ api_version = "2024-10"
 embedded = false
 
 [app_preferences]
-url = "https://clickncollect-12d7088d53ee.herokuapp.com/"
+url = "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com"

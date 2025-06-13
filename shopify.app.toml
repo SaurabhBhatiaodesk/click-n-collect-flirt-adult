@@ -17,10 +17,10 @@ scopes = "read_customers,read_inventory,read_locales,read_locations,read_orders,
 
 [auth]
 redirect_urls = [
-  "https://clickncollect-12d7088d53ee.herokuapp.com/auth/callback",
-  "https://clickncollect-12d7088d53ee.herokuapp.com/auth/shopify/callback",
-  "https://clickncollect-12d7088d53ee.herokuapp.com/api/auth/callback",
-  "https://clickncollect-12d7088d53ee.herokuapp.com/api/auth"
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/shopify/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth"
 ]
 
 [webhooks]
@@ -32,4 +32,4 @@ api_version = "2024-10"
 embedded = false
 
 [app_preferences]
-url = "https://clickncollect-12d7088d53ee.herokuapp.com/"
+url = "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com"

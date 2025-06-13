@@ -3,12 +3,12 @@
 client_id = "0654aca1f7bb554ce8c13c7185cf0f2e"
 name = "click-&-collect-flirt-adult"
 handle = "click-collect-flirt-adult"
-application_url = "https://surfing-optional-voltage-rochester.trycloudflare.com"
+application_url = "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/"
 embedded = true
 
 [build]
-automatically_update_urls_on_dev = true
-dev_store_url = "filter-testing-store.myshopify.com"
+automatically_update_urls_on_dev = false
+dev_store_url = "saasintegration.myshopify.com"
 include_config_on_deploy = true
 
 [access_scopes]
@@ -17,13 +17,21 @@ scopes = "read_inventory,read_locales,read_locations,read_product_listings,read_
 
 [auth]
 redirect_urls = [
-  "https://surfing-optional-voltage-rochester.trycloudflare.com/auth/callback",
-  "https://surfing-optional-voltage-rochester.trycloudflare.com/auth/shopify/callback",
-  "https://surfing-optional-voltage-rochester.trycloudflare.com/api/auth/callback"
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/auth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/auth/shopify/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2025-04"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/webhooks/app/uninstalled"
 
 [pos]
 embedded = false
