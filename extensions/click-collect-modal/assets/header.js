@@ -1,9 +1,10 @@
+var hostname = 'flirt-adult-store.myshopify.com';
 async function fetchData(e) { try { const t = await fetch(e); if (!t.ok) throw new Error("Network response was not ok"); return await t.json() } catch (e) { return console.error("Error fetching data:", e), null } }
 function setCookie(name, value, days) { let expires = ""; if (days) { let date = new Date(); date.setTime(date.getTime() + (days * 86400000)); expires = "; expires=" + date.toUTCString() } document.cookie = `${name}=${value}${expires}; path=/`; }
 function getCookie(name) { let cookies = document.cookie.split(";").map(cookie => cookie.trim().split("=")); for (let i = 0; i < cookies.length; i++) { if (cookies[i][0] === name) { return decodeURIComponent(cookies[i][1]); } } return null; }
 async function getLocationsDropdown(selectedLocation = "") { console.log('test');
   try { const dropdownDiv = document.querySelector('.cls-pickuplocations-div'); document.querySelector('.pickup-locations-dropdown-header').classList.remove('cnc-locationsspace'); dropdownDiv.classList.add('loader');
-    const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/pickupLocation?shop=${location.hostname}`;
+    const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/pickupLocation?shop=${hostname}`;
     const testres = await fetchData(pickuplcurl); const locations = testres?.data?.locations?.nodes; const destinationsArr = [];
     if (locations && selectedLocation != null) { for (const location of locations) { if (location?.address?.zip && location?.localPickupSettingsV2 != null) { destinationsArr.push(`${location.address.address1} ${location.address.city} ${location.address.zip} ${location.address.province} ${location.address.country}`); }
       } } dropdownDiv.innerHTML = ''; const dropdwndiv = document.createElement("div"); dropdwndiv.className = 'cnc-dropdwndiv'; const delivertextdiv = document.createElement("div"); delivertextdiv.className = 'cnc-delivertextdiv';
@@ -17,7 +18,7 @@ async function getLocationsDropdown(selectedLocation = "") { console.log('test')
       const selectBtnDiv = document.createElement('div'); selectBtnDiv.className = 'select-btn'; selectBtnDiv.id=selectedLocation;
       const spanElement = document.createElement('span'); spanElement.className = 'sBtn-text'; spanElement.textContent = 'Select your option'; selectBtnDiv.appendChild(spanElement); newDiv.appendChild(selectBtnDiv);
       const customerLocation = getCookie("customerlocation"); const lable2 = document.createElement('label'); lable2.className = 'cnc-dropdown-delver'; lable2.textContent = "Delivering To"; const delivertext = document.createElement('span'); delivertext.className = 'cnc-dropdown-text'; delivertext.textContent = customerLocation;
-      const mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/distance?customerlocation=${customerLocation}&shop=${location.hostname}`;
+      const mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/distance?customerlocation=${customerLocation}&shop=${hostname}`;
       const res = await fetchData(mapUrl); var count = 0;
       if (res) { const sortedLocations = [];
         for (let index = 0; index < locations.length; index++) { const location = locations[index]; if (location?.address?.zip && location?.localPickupSettingsV2 != null) {

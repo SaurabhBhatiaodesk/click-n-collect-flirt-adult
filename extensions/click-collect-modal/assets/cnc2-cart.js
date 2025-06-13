@@ -1,3 +1,4 @@
+var hostname = 'flirt-adult-store.myshopify.com';
 async function cartUpdate(updates, flag = false) {
 	try {
 		let response = await fetch("/cart/update.js", {
@@ -45,7 +46,7 @@ async function getCartLocations(selectedLocationName = "") {
 	// console.log('1111111 ')
 	try {
 		var count = 0;
-		const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/pickupLocation?shop=${location.hostname}`;
+		const pickuplcurl = `https://clickncollect-12d7088d53ee.herokuapp.com/api/pickupLocation?shop=${hostname}`;
         const testres = await fetchData(pickuplcurl); 
 
 		let arrr = localStorage.getItem("testings");
@@ -74,7 +75,7 @@ async function getCartLocations(selectedLocationName = "") {
 				// // console.log('10')
 				let customerLocation = getCookie("customerlocation");
 				document.querySelector(".location").value = customerLocation;
-				let distanceApiUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/distance?customerlocation=${customerLocation}&shop=${location.hostname}`;
+				let distanceApiUrl = `https://clickncollect-12d7088d53ee.herokuapp.com/api/distance?customerlocation=${customerLocation}&shop=${hostname}`;
 				let res = await fetchData(distanceApiUrl);		
 				// // console.log('res ',res);
 				let locationData = [];	
@@ -188,7 +189,7 @@ async function getCartLocations(selectedLocationName = "") {
 async function get_inv_locations( product) {     
 	try {       
 		// // // console.log('product',product);   
-		let response = await fetch(`https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/cart?product_id=${product.product_id}&shop=${location.hostname}`);
+		let response = await fetch(`https://clickncollect-12d7088d53ee.herokuapp.com/api/cart?product_id=${product.product_id}&shop=${hostname}`);
 		if (response.ok) {
 			let data = await response.json();
 			handle_inv_locations(null, data.data, product);   
