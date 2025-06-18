@@ -13,14 +13,14 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_customers,read_inventory,read_locales,read_locations,read_orders,read_product_listings,read_products,read_publications,read_script_tags,write_content,write_inventory,write_locations,write_products,write_publications,write_script_tags,write_shipping"
+scopes = "read_customers,read_inventory,read_locales,read_locations,read_orders,read_product_listings,read_products,read_publications,read_script_tags,write_content,write_inventory,write_locations,write_products,write_publications,write_script_tags,write_shipping,read_product_pickup_locations,read_product_inventory"
 
 [auth]
 redirect_urls = [
   "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/callback",
   "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/shopify/callback",
-  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth/callback",
-  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth"
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/auth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/auth"
 ]
 
 [webhooks]

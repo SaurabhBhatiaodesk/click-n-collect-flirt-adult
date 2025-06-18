@@ -5,14 +5,14 @@ async function getLocations(selectedLocation = "") {
     try { document.querySelector('.cnc-checkload').classList.add('loader');
         document.querySelector(".popup-box .address-popup").style.display = "none";
         document.querySelector(".popup-box button.setlocationbtn.popup-btn").style.display = "none";
-        const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/pickupLocation?shop=${hostname}`;
+        const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/pickupLocation?shop=${hostname}`;
         const testres = await fetchData(pickuplcurl);
         const locations = testres?.data?.locations?.nodes;
         const destinationsArr = []; if (locations) { for (const location of locations) { if (location.address.zip && location?.localPickupSettingsV2 != null) { destinationsArr.push(`${location.address.address1} ${location.address.city} ${location.address.zip} ${location.address.province} ${location.address.country}`); } } }
         if (destinationsArr.length > 0) {
             const customerLocation = getCookie("customerlocation");
             document.querySelector(".location").value = customerLocation;
-            let mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/distance?customerlocation=${customerLocation}&shop=${hostname}`;
+            let mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/distance?customerlocation=${customerLocation}&shop=${hostname}`;
             const res = await fetchData(mapUrl); var count = 0;
             if (res) {
                 const sortedLocations = [];

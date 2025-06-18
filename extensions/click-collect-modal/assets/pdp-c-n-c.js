@@ -3,11 +3,11 @@ function setCookie(name,value,days){let expires="";if(days){let date=new Date();
 function getCookie(name){let cookies=document.cookie.split(";").map(cookie=>cookie.trim().split("="));for(let i=0;i<cookies.length;i++){if(cookies[i][0]===name){return decodeURIComponent(cookies[i][1]);}}return null;}
 async function fetchData(url) { try { let response = await fetch(url); if (!response.ok) throw new Error(`Failed to fetch data from ${url}`); return await response.json(); } catch (error) { console.error("Error: ", error); throw error;  }}
 async function getLocations(selectedLocation = "") { try {  
-        const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/pickupLocation?shop=${hostname}`;
+        const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/pickupLocation?shop=${hostname}`;
         const testres = await fetchData(pickuplcurl); 
         const locations = testres?.data?.locations?.nodes;  const destinationsArr = []; if (locations) { for (const location of locations) { if (location.address.zip && location?.localPickupSettingsV2 != null) {  destinationsArr.push(`${location.address.address1} ${location.address.city} ${location.address.zip} ${location.address.province} ${location.address.country}`);}}}
             if (destinationsArr.length > 0) { const customerLocation = getCookie("customerlocation"); document.querySelector(".location").value = customerLocation;
-              const mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/distance?customerlocation=${customerLocation}&shop=${hostname}`;
+              const mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/distance?customerlocation=${customerLocation}&shop=${hostname}`;
               const res = await fetchData(mapUrl);
               if (res) { const sortedLocations = []; var count = 0; 
                   for (const location of locations) { if (location.address.zip && location?.localPickupSettingsV2 != null) {  const zipcode= location.address.zip; 
@@ -23,7 +23,7 @@ async function getLocations(selectedLocation = "") { try {
   } 
 async function getInventoryLocations(callback) {
   let productId = document.querySelector('.inventory-details').dataset.productid;
-  try { let response = await fetch(`https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/cart?product_id=${productId}&shop=${hostname}`); 
+  try { let response = await fetch(`https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/cart?product_id=${productId}&shop=${hostname}`); 
     if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
     let data = await response.json(); callback(null, data.data);
   } catch (error) {console.error("Error fetching inventory locations:", error); callback(error, null);}

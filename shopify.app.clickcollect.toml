@@ -19,8 +19,8 @@ scopes = "read_inventory,read_locales,read_locations,read_product_listings,read_
 redirect_urls = [
   "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/callback",
   "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comauth/shopify/callback",
-  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth/callback",
-  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.comapi/auth"
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/auth/callback",
+  "https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/auth"
 ]
 
 [webhooks]
