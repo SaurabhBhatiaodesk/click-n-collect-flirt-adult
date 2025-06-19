@@ -2,13 +2,13 @@ async function fetchData(e) { try { const t = await fetch(e); if (!t.ok) throw n
 function getCookie(e) { const t = document.cookie.split(";").map(e => e.trim().split("=")), o = t.find(t => t[0] === e); return o ? decodeURIComponent(o[1]) : null } function setCookie(e, t, o) { let n = ""; o && (n = new Date, n.setTime(n.getTime() + 24 * o * 60 * 60 * 1e3), n = "; expires=" + n.toUTCString()), document.cookie = `${e}=${t}${n}; path=/` }
 async function getLocations(selectedLocation = "") {try { document.querySelector('.cnc-checkload').classList.add('loader');
 document.querySelector(".popup-box .address-popup").style.display = "none";document.querySelector(".popup-box button.setlocationbtn.popup-btn").style.display = "none";
-        const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/pickupLocation?shop=${hostname}`;
+        const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/pickupLocation?shop=${Shopify.shop}`;
         const testres = await fetchData(pickuplcurl);const locations = testres?.data?.locations?.nodes;
         const destinationsArr = []; if (locations) { for (const location of locations) { if (location.address.zip && location?.localPickupSettingsV2 != null) { destinationsArr.push(`${location.address.address1} ${location.address.city} ${location.address.zip} ${location.address.province} ${location.address.country}`); } } }
         if (destinationsArr.length > 0) {
             const customerLocation = getCookie("customerlocation");
             document.querySelector(".location").value = customerLocation;
-            let mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/distance?customerlocation=${customerLocation}&shop=${hostname}`;
+            let mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/distance?customerlocation=${customerLocation}&shop=${Shopify.shop}`;
             const res = await fetchData(mapUrl); var count = 0;
             if (res) {const sortedLocations = [];for (let index = 0; index < locations.length; index++) {const location = locations[index]; if (location.address.zip && location?.localPickupSettingsV2 != null) {
                         const zipcode = location.address.zip; const fulladdress = location.address.address1 + ' ' + zipcode;

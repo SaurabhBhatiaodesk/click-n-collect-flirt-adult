@@ -31,6 +31,6 @@ export async function loader({ request }) {
   console.log('requestOptionslocations', requestOptionslocations);
   let locationsResult= await fetch(`https://${shop}/admin/api/2024-04/graphql.json`, requestOptionslocations)
   let data=await locationsResult.json();
- 
+  console.log("data===>",data);
   return await cors(request, json(data));
 }
