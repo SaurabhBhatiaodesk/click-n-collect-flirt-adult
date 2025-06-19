@@ -47,7 +47,7 @@ export async function loader({ request }) {
     }
 
     let testres = await locationsResult.json();
-    console.log("testres===>",testres);
+    console.log("testres===>",testres?.data?.locations?.nodes);
     const destinationsArr = [];
 
     if (testres?.data?.locations?.nodes?.length > 0) {
