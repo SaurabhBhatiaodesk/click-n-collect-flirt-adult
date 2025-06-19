@@ -1,4 +1,3 @@
-var hostname = 'flirt-adult-store.myshopify.com';
 async function fetchData(e) { try { const t = await fetch(e); if (!t.ok) throw new Error("Network response was not ok"); return await t.json() } catch (e) { return console.error("Error fetching data:", e), null } }
 function setCookie(name, value, days) { let expires = ""; if (days) { let date = new Date(); date.setTime(date.getTime() + (days * 86400000)); expires = "; expires=" + date.toUTCString() } document.cookie = `${name}=${value}${expires}; path=/`; }
 function getCookie(name) { let cookies = document.cookie.split(";").map(cookie => cookie.trim().split("=")); for (let i = 0; i < cookies.length; i++) { if (cookies[i][0] === name) { return decodeURIComponent(cookies[i][1]); } } return null; }

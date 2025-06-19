@@ -1,4 +1,3 @@
-var hostname = 'flirt-adult-store.myshopify.com';
 async function cartUpdate(updates, flag = false) {
 	try {
 		let response = await fetch("/cart/update.js", {

@@ -1,4 +1,3 @@
-var hostname = 'flirt-adult-store.myshopify.com';
 async function fetchData(e) { try { const t = await fetch(e); if (!t.ok) throw new Error("Network response was not ok"); return await t.json() } catch (e) { return console.error("Error fetching data:", e), null } }
 function getCookie(e) { const t = document.cookie.split(";").map(e => e.trim().split("=")), o = t.find(t => t[0] === e); return o ? decodeURIComponent(o[1]) : null } function setCookie(e, t, o) { let n = ""; o && (n = new Date, n.setTime(n.getTime() + 24 * o * 60 * 60 * 1e3), n = "; expires=" + n.toUTCString()), document.cookie = `${e}=${t}${n}; path=/` }
 async function getLocations(selectedLocation = "") {try { document.querySelector('.cnc-checkload').classList.add('loader');
