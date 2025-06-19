@@ -26,7 +26,7 @@ export async function loader({ request }) {
     console.log('apiKey:', apiKey1?.apikey);
 
     const graphql = JSON.stringify({
-      query: "query MyQuery { locations(first: 10) { nodes { activatable hasActiveInventory isActive localPickupSettingsV2 { instructions pickupTime } name id address { zip provinceCode province phone longitude latitude formatted countryCode country city address2 address1 } } } }",
+      query: "query MyQuery { locations(first: 30) { nodes { activatable hasActiveInventory isActive localPickupSettingsV2 { instructions pickupTime } name id address { zip provinceCode province phone longitude latitude formatted countryCode country city address2 address1 } } } }",
       variables: {}
     });
 
