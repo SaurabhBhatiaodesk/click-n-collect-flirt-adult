@@ -41,11 +41,13 @@ export async function loader({ request }) {
 
     let locationsResult = await fetch(`https://${shop}/admin/api/2024-04/graphql.json`, requestOptionslocations);
 
+    console.log("locationsResult===>",locationsResult)
     if (!locationsResult.ok) {
       throw new Error(`Locations request failed with status ${locationsResult.status}`);
     }
 
     let testres = await locationsResult.json();
+    console.log("testres===>",testres);
     const destinationsArr = [];
 
     if (testres?.data?.locations?.nodes?.length > 0) {

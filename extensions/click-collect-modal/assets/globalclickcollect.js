@@ -1,32 +1,22 @@
 var hostname = 'flirt-adult-store.myshopify.com';
 async function fetchData(e) { try { const t = await fetch(e); if (!t.ok) throw new Error("Network response was not ok"); return await t.json() } catch (e) { return console.error("Error fetching data:", e), null } }
 function getCookie(e) { const t = document.cookie.split(";").map(e => e.trim().split("=")), o = t.find(t => t[0] === e); return o ? decodeURIComponent(o[1]) : null } function setCookie(e, t, o) { let n = ""; o && (n = new Date, n.setTime(n.getTime() + 24 * o * 60 * 60 * 1e3), n = "; expires=" + n.toUTCString()), document.cookie = `${e}=${t}${n}; path=/` }
-async function getLocations(selectedLocation = "") {
-    try { document.querySelector('.cnc-checkload').classList.add('loader');
-        document.querySelector(".popup-box .address-popup").style.display = "none";
-        document.querySelector(".popup-box button.setlocationbtn.popup-btn").style.display = "none";
+async function getLocations(selectedLocation = "") {try { document.querySelector('.cnc-checkload').classList.add('loader');
+document.querySelector(".popup-box .address-popup").style.display = "none";document.querySelector(".popup-box button.setlocationbtn.popup-btn").style.display = "none";
         const pickuplcurl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/pickupLocation?shop=${hostname}`;
-        const testres = await fetchData(pickuplcurl);
-        const locations = testres?.data?.locations?.nodes;
+        const testres = await fetchData(pickuplcurl);const locations = testres?.data?.locations?.nodes;
         const destinationsArr = []; if (locations) { for (const location of locations) { if (location.address.zip && location?.localPickupSettingsV2 != null) { destinationsArr.push(`${location.address.address1} ${location.address.city} ${location.address.zip} ${location.address.province} ${location.address.country}`); } } }
         if (destinationsArr.length > 0) {
             const customerLocation = getCookie("customerlocation");
             document.querySelector(".location").value = customerLocation;
             let mapUrl = `https://click-n-collect-flirt-adult-f70cdb5d038f.herokuapp.com/api/distance?customerlocation=${customerLocation}&shop=${hostname}`;
             const res = await fetchData(mapUrl); var count = 0;
-            if (res) {
-                const sortedLocations = [];
-                for (let index = 0; index < locations.length; index++) {
-                    const location = locations[index]; if (location.address.zip && location?.localPickupSettingsV2 != null) {
+            if (res) {const sortedLocations = [];for (let index = 0; index < locations.length; index++) {const location = locations[index]; if (location.address.zip && location?.localPickupSettingsV2 != null) {
                         const zipcode = location.address.zip; const fulladdress = location.address.address1 + ' ' + zipcode;
-                        for (let index = 0; index < destinationsArr.length; index++) {
-                            const distanceElement = res?.rows[0]?.elements[index]; const destinationAddress = destinationsArr[index];
-                            if (destinationAddress.includes(zipcode)) {
-                                if (distanceElement?.status == "OK" && distanceElement?.status != "ZERO_RESULTS" && distanceElement?.distance?.value < res?.kilometer) {
-                                    const distanceText = distanceElement?.distance.text;
-                                    const parsedDistance = parseInt(distanceText.replace(/,/g, "").replace(" km", ""));
-                                    sortedLocations.push({
-                                        id: location.id, distance: parsedDistance, distanceText, origin: res.origin_addresses, ...location
+                        for (let index = 0; index < destinationsArr.length; index++) { const distanceElement = res?.rows[0]?.elements[index]; const destinationAddress = destinationsArr[index];
+                            if (destinationAddress.includes(zipcode)) {if (distanceElement?.status == "OK" && distanceElement?.status != "ZERO_RESULTS" && distanceElement?.distance?.value < res?.kilometer) {
+                                    const distanceText = distanceElement?.distance.text;const parsedDistance = parseInt(distanceText.replace(/,/g, "").replace(" km", ""));
+                                    sortedLocations.push({id: location.id, distance: parsedDistance, distanceText, origin: res.origin_addresses, ...location
                                     });
                                 }
                             } else if (distanceElement?.status == "OK" && distanceElement?.status != "ZERO_RESULTS" && distanceElement?.distance?.value > 1) {
@@ -34,10 +24,8 @@ async function getLocations(selectedLocation = "") {
                             }
                         }
                     }
-                }
-                sortedLocations.sort((a, b) => a.distance - b.distance);   renderLocations(sortedLocations, selectedLocation, count);
-            }
-        }
+                }sortedLocations.sort((a, b) => a.distance - b.distance);   renderLocations(sortedLocations, selectedLocation, count);
+            }}
         document.querySelector(".popup-box .address-popup").style.display = "block";
         if (getCookie("storelocationName")) { console.log('storelocationName not set : ', getCookie("storelocationName")) }
         else { document.querySelector(".popup-box .address-popup").style.display = "block"; }
@@ -85,14 +73,11 @@ if (document.querySelector(".popup-modal") && !window.location.pathname.includes
                          const noStoresElement = document.createElement("div"); noStoresElement.classList.add("popup-inner-col"); noStoresElement.innerHTML = '<div class="add">Please enter the postal code </div>'; locationsContainer.appendChild(noStoresElement); } }
         });   document.addEventListener("change", event => {
             if (event.target.matches(".popup-modal .address-popup input.locations")) { document.querySelector(".setlocationbtn").style.display = "block"; setCookie("storelocationName", event.target.nextElementSibling.textContent); setCookie("storelocation", event.target.id); }
-        });
-    }); if (getCookie("storelocationName")) { } else { showModal(); }
-}
+        });}); if (getCookie("storelocationName")) { } else { showModal(); }}
 async function getUserLocation() { const accessToken = '7a1891347cf4af'; try { const response = await fetch(`https://ipinfo.io/json?token=${accessToken}`);
         const data = await response.json(); if (getCookie("customerlocation")) {
             if (document.querySelector('.check-btn input.location').value == "") { document.querySelector('.check-btn input.location').value = data.postal; }
         } else {setCookie("customerlocation", data.postal);
             if (document.querySelector('.check-btn input.location')) { document.querySelector('.check-btn input.location').value = data.postal; }
-        } return data;
-    } catch (error) { console.error('Error fetching IP information:', error); }
+        } return data;} catch (error) { console.error('Error fetching IP information:', error); }
 }   if (!getCookie("customerlocation")) { getUserLocation(); }
